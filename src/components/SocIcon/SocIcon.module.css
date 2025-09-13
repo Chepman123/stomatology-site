@@ -1,0 +1,69 @@
+.div{
+    display: flex;
+    transition: all 0.3s ease-in-out;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 22px;
+  color: white;
+  background-color: rgb(0, 60, 60);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+
+.instagram:hover {
+  background: #f21d60;
+}
+
+.facebook:hover {
+  background: #1877f2;
+}
+
+.youtube:hover {
+  background: #ff0000;
+}
+.tiktok:hover {
+  background: #000000;
+}
+.phone:hover {
+  background: #5d3c11;
+}
+.email:hover {
+  background: #969696;
+}
+.info{
+    transition: all 0.3s ease-in-out;
+    margin-right: 10px;
+    display: none;
+}
+.icon:hover {
+  transform: scale(1.1);
+  color: white;
+}
+.div:hover .info{
+  display: block;
+}
+
+.p{
+    width: 120%;
+    height: 100%;
+    background-color: rgb(0, 43, 43);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    margin-left: -25px;
+    padding-left: 20px;
+}
