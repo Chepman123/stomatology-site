@@ -2,9 +2,15 @@ import classes from './About.module.css'
 
 export default function About(){
     return(
-        <div id='About' className={classes.div}>
+        <article id='About' className={classes.article}>
+            <div className={classes.left}>
+            <h1 className={classes.h1}>Dlaczego warto wybrać DANTWAY?</h1>
+            <p className={classes.p}>Tworzymy atmosferę, w której każdy pacjent czuje się swobodnie i bezpiecznie. Z myślą o rosnącej liczbie osób odwiedzających Trójmiasto, także turystów i gości biznesowych, rozszerzyliśmy obsługę o dodatkowe języki. Dzięki temu wizyty w naszym gabinecie są możliwe również w języku ukraińskim, rosyjskim i angielskim</p>
+            </div>
+            <div className={classes.right}>
             <h1 className={classes.h1}>O nas</h1>
-            <p className={classes.p}>Jesteśmy młodym ambitnym zespołem.   Szanując czas naszych pacjentów, przyjęcia w klinice zostały tak zorganizowane, aby pacjenci byli zawsze przyjmowani punktualnie o wyznaczonej godzinie, a wszystkie wizyty są potwierdzane z jednodniowym wyprzedzeniem</p>
-        </div>
+            <p className={classes.p}>Stomatologia DANTWAY powstała z pasji i zaangażowania w stomatologię. Naszą misją jest troska o zdrowie i dobro pacjentów, a także o ich uśmiech – bo uśmiech to najlepsza wizytówka każdego człowieka</p>
+            </div>
+        </article>
     )
 }

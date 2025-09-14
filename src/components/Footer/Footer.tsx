@@ -1,3 +1,4 @@
+import InfoModal from '../InfoModal/InfoModal';
 import SocIcon from '../SocIcon/SocIcon';
 import classes from './Footer.module.css';
 
@@ -13,6 +14,7 @@ export default function Footer(){
               <SocIcon icon="tiktok"/>
               <SocIcon icon="phone"/>
               <SocIcon icon="email"/>
+              <InfoModal></InfoModal>
            </div>
         </footer>
     );

@@ -1,0 +1,26 @@
+.article{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border-top: 1px solid black;
+    width: 100%;
+    justify-self: start;
+    padding-left: 50px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+.h1{
+    text-transform: uppercase;
+    font-size: 200%;
+    margin-bottom: 30px;
+}
+.p{
+    text-align: left;
+    width: 60%;
+    font-size: 120%;
+    padding-bottom: 20px;
+}
+.ul{
+    font-size: 150%;
+    padding-bottom: 20px;
+}

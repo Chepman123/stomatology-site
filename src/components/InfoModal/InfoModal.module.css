@@ -1,0 +1,9 @@
+.dialog{
+    justify-self: center;
+    align-self: center;
+    width: 40%;
+    height: 80%;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px 0px #000000;
+}
