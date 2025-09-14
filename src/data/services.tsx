@@ -1,13 +1,13 @@
-type servives = "Profilaktyka" |
+ /*type servives = "Profilaktyka" |
  "Stomatologia dziecięca";
 
- interface serviceExample{
+interface serviceExample{
     type:servives,
     price:number|string,
     name:string
  }
 
- const servicesData: serviceExample[]=[
+const servicesData: serviceExample[]=[
     {
         type:"Profilaktyka",
         price:"od 200",
@@ -38,4 +38,4 @@ type servives = "Profilaktyka" |
         price:300,
         name:"Usunięcie zęba"
     }
-]
+]*/
