@@ -5,6 +5,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "vercel-build": "rm -rf node_modules && npm install && vite build",
     "dev": "vite",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
