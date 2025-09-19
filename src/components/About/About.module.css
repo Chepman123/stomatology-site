@@ -18,15 +18,15 @@
 }
 .left{
     padding-top: 25px;
+    padding-bottom: 25px;
     text-align: left;
     padding-left: 50px;
+    padding-right: 50px;
     border-bottom: 1px solid black;
+    display: flex;
 }
 .right{
-    padding-top: 50px;
     display: flex;
-    flex-direction: column;
-    align-items: end;
     text-align: right;
     padding-right: 50px;
     margin-top: 20px;
@@ -40,4 +40,19 @@
   border: 2px solid #ffffff; 
   margin: 2px;
   margin-bottom: 10px;
+}
+.firstImg{
+    width: 20%;
+    box-shadow: 0px 0px 15px 1px #000000;
+    object-fit: contain;
+    border-radius: 20px;
+}
+.right{
+    padding-left: 50px;
+}
+.second{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
 }

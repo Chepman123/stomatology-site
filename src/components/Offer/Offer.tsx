@@ -3,6 +3,7 @@ import classes from './Offer.module.css'
 
 export default function Offer(){
     return(
+        <div className={classes.div}>
         <article className={classes.article}>
          <h1 className={classes.h1}>Nasza oferta</h1>
          <p className={classes.p}>Zajmujemy się nie tylko leczeniem zębów – pomagamy odzyskać komfort, pewność siebie i lepszą jakość życia. Oferujemy pełną opiekę stomatologiczną w zakresie:</p>
@@ -15,5 +16,7 @@ export default function Offer(){
          </ul>
          <Button>Dowiedź się więcej</Button>
         </article>
+        <img className={classes.img} src='/image1.jpg'/>
+        </div>
     )
 }
