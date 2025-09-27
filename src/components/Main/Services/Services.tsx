@@ -4,7 +4,8 @@ import Header from "../../Header/Header";
 import Service from "./Service/Service";
 import classes from './Services.module.css'
 import type { serviceExample } from '/Dantway/stomatology-site/src/data/services';
-import { servicesData } from '/Dantway/stomatology-site/src/data/services';
+import { servicesData } from "../../../data/services";
+
 
 const serviceTypes: { label: string; type: serviceExample["type"] }[] = [
   { label: "1. Profilaktyka", type: "Profilaktyka" },
