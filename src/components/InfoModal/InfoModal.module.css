@@ -7,3 +7,52 @@
     border-radius: 20px;
     box-shadow: 0px 0px 15px 0px #000000;
 }
+.button{
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 25px;
+    border: none;
+    text-align: center;
+    color: white;
+    background-color: rgb(0, 100, 100);
+    transition: all 0.3s ease-in-out;
+}
+.button:hover{
+    cursor: pointer;
+    transform: translateY(-2.5px);
+    box-shadow: 0px 5px 15px -1px #000000;
+}
+.button:active{
+    background-color: rgb(0, 83, 83);
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.h4{
+    width: 100%;
+    justify-self: start;
+    border-bottom: 1px solid black;
+}
+.h1{
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+    border-bottom: 2px solid black;
+}
+.img{
+    box-shadow: 0px 0px 15px 1px #000000;
+    object-fit: contain;
+    border-radius: 20px;
+    width: 50%;
+}
+.div{
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttonDiv{
+    display: flex;
+    justify-content: center;
+}

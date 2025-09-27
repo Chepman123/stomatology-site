@@ -9,13 +9,13 @@ interface icon{
 const icons:icon[]=[
     {
         type:"instagram",
-        link:"https://instagram.com",
+        link:"https://www.instagram.com/dantway.stomatologia?igsh=MWx5c2hnaXpibzF6&utm_source=qr",
         iconClass:"fab fa-instagram",
         styleClass:classes.instagram
     },
     {
         type:"facebook",
-        link:"https://facebook.com",
+        link:"https://www.facebook.com/share/1BPxwDDouS/?mibextid=wwXIfr",
         iconClass:"fab fa-facebook",
         styleClass:classes.facebook
     },
@@ -27,21 +27,9 @@ const icons:icon[]=[
     },
     {
         type:"tiktok",
-        link:"https://tiktok.com",
+        link:"https://www.tiktok.com/@dantway.stomatologia?_t=ZN-9038jpVfWXG",
         iconClass:"fab fa-tiktok",
         styleClass:classes.tiktok
-    },
-    {
-        type:"phone",
-        link:"+48 606 591 391",
-        iconClass:"fas fa-phone",
-        styleClass:classes.phone
-    },
-    {
-        type:"email",
-        link:"Dantwaystomatologia@gmail.com",
-        iconClass:"fas fa-envelope",
-        styleClass:classes.email
     }
 ]
 
@@ -52,7 +40,6 @@ export default function SocIcon({icon}:{icon:string}){
         <a href={selectedIcon?.link} target="_blank" rel="noreferrer" className={`${classes.icon} ${selectedIcon?.styleClass}`}>
           <i className={selectedIcon?.iconClass}></i>
         </a>
-        <div className={classes.info}><p className={classes.p}>{selectedIcon?.link}</p></div>
         </div>
     );
 }

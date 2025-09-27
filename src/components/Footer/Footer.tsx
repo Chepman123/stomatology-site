@@ -12,9 +12,7 @@ export default function Footer(){
               <SocIcon icon="youtube"/>
               <SocIcon icon="facebook"/>
               <SocIcon icon="tiktok"/>
-              <SocIcon icon="phone"/>
-              <SocIcon icon="email"/>
-              <InfoModal></InfoModal>
+              <InfoModal><i className={"fas fa-phone"}></i></InfoModal>
            </div>
         </footer>
     );

@@ -34,23 +34,10 @@
 .tiktok:hover {
   background: #000000;
 }
-.phone:hover {
-  background: #5d3c11;
-}
-.email:hover {
-  background: #969696;
-}
-.info{
-    transition: all 0.3s ease-in-out;
-    margin-right: 10px;
-    display: none;
-}
+
 .icon:hover {
   transform: scale(1.1);
   color: white;
-}
-.div:hover .info{
-  display: block;
 }
 
 .p{

@@ -1,4 +1,6 @@
 import Button from '../Button/Button'
+import InfoModal from '../InfoModal/InfoModal'
+import Modal from '../InfoModal/Modal'
 import classes from './Nav.module.css'
 
 export default function Nav(){
@@ -16,10 +18,9 @@ export default function Nav(){
         </span>
         </div>
         <aside className={classes.aside}>
-            <h1>Zapisz się na seans</h1>
+            <h1>Umów się na wizytę</h1>
             <div>
-            <Button>Umów się na wizytę</Button>
-            <Button>Sprawdź Adres</Button>
+            <InfoModal>Sprawdź Adres</InfoModal>
             </div>
         </aside>
     </nav>

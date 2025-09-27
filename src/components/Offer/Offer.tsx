@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 import classes from './Offer.module.css'
 
@@ -14,7 +15,7 @@ export default function Offer(){
             <li>stomatologii estetycznej</li>
             <li>implantologii.</li>
          </ul>
-         <Button>Dowiedź się więcej</Button>
+         <Link className={classes.Link} to="/services">Dowiedź się więcej</Link>
         </article>
         <img className={classes.img} src='/image1.jpg'/>
         </div>

@@ -1,21 +1,21 @@
- /*type servives = "Profilaktyka" |
- "Stomatologia dziecięca";
+type servives = "Profilaktyka" |
+ "Stomatologia dziecięca"|"Stomatologia zachowawcza"|"Wybielanie"|"Chirurgia"|"Protetyka"|"Leczenie kanałowe"|"Implantologia";
 
-interface serviceExample{
+export interface serviceExample{
     type:servives,
     price:number|string,
     name:string
  }
 
-const servicesData: serviceExample[]=[
+export const servicesData: serviceExample[]=[
     {
         type:"Profilaktyka",
-        price:"od 200",
+        price:"200+",
         name:"Skaling"
     },
     {
         type:"Profilaktyka",
-        price:"od 250",
+        price:"250+",
         name:"Piaskowanie"
     },
     {
@@ -37,5 +37,213 @@ const servicesData: serviceExample[]=[
         type:"Stomatologia dziecięca",
         price:300,
         name:"Usunięcie zęba"
+    },
+    {
+        type:"Stomatologia zachowawcza",
+        price:"100+",
+        name:"Konsultacja"
+    },
+    {
+        type:"Stomatologia zachowawcza",
+        price:"300+",
+        name:"Wypełnienie"
     }
-]*/
+    ,
+    {
+        type:"Stomatologia zachowawcza",
+        price:"500",
+        name:"Obudowa zęba"
+    },
+    {
+        type:"Wybielanie",
+        price:"1000",
+        name:"Nakładki + preparat"
+    },
+    {
+        type:"Wybielanie",
+        price:"1000",
+        name:"Jednowizytowe"
+    },
+
+
+    {
+        type:"Chirurgia",
+        price:"400",
+        name:"Ekstrakcja zęba"
+    },
+     {
+        type:"Chirurgia",
+        price:"800",
+        name:"Usunięcie zęba „mądrości” górnego"
+    },
+     {
+        type:"Chirurgia",
+        price:"800",
+        name:"Usunięcie zęba „mądrości” dolnego"
+    },
+     {
+        type:"Chirurgia",
+        price:"0",
+        name:"Usunięcie szwów"
+    },
+     {
+        type:"Chirurgia",
+        price:"1000",
+        name:"Dłutowanie zęba zatrzymanego"
+    },
+     {
+        type:"Chirurgia",
+        price:"100",
+        name:"Szycie chirurgiczne"
+    },
+
+    {
+        type:"Protetyka",
+        price:"200",
+        name:"Konsultacja"
+    },
+    {
+        type:"Protetyka",
+        price:"2500",
+        name:"Proteza akrylowa(Całkowita)"
+    },
+    {
+        type:"Protetyka",
+        price:"2000",
+        name:"Proteza akrylowa(Częściowa)"
+    },
+    {
+        type:"Protetyka",
+        price:"500",
+        name:"Proteza akrylowa(Siatka wzmacniająca)"
+    },
+    {
+        type:"Protetyka",
+        price:"3500",
+        name:"Proteza szkieletowa"
+    },
+    {
+        type:"Protetyka",
+        price:"1300",
+        name:"Korona ceramiczna na podbudowie metalowej"
+    },
+    {
+        type:"Protetyka",
+        price:"1700",
+        name:"Korona ceramiczna na podbudowie cyrkonowej"
+    },
+    {
+        type:"Protetyka",
+        price:"1000",
+        name:"Korona pełnometalowa CoCr"
+    },
+    {
+        type:"Protetyka",
+        price:"700",
+        name:"Wkład"
+    },
+    {
+        type:"Protetyka",
+        price:"1900",
+        name:"Szyna relaksacyjna"
+    },
+    {
+        type:"Protetyka",
+        price:"1300",
+        name:"Inla/onlay"
+    },
+    {
+        type:"Protetyka",
+        price:"1200",
+        name:"Mikroproteza do 3 zębów"
+    },
+    {
+        type:"Protetyka",
+        price:"300+",
+        name:"Naprawa protezy"
+    },
+    {
+        type:"Protetyka",
+        price:"700",
+        name:"Podścielenie"
+    },
+    {
+        type:"Protetyka",
+        price:"50",
+        name:"Korona tymczasowa (natychmiastowa)"
+    },
+    {
+        type:"Protetyka",
+        price:"100",
+        name:"Zdęcie/ zacementowanie korony z innego gabinetu"
+    },
+    {
+        type:"Protetyka",
+        price:"2500",
+        name:"Licówka pełnoceramiczna za 1 pkt."
+    },
+    {
+        type:"Protetyka",
+        price:"2000",
+        name:"Most adhezyjny cyrkonowy"
+    },
+    {
+        type:"Protetyka",
+        price:"1000",
+        name:"Most adhezyjny kompozytowy"
+    },
+
+    {
+        type:"Leczenie kanałowe",
+        price:"350",
+        name:"Reendo (ponowne leczenie kanałowe"
+    },
+    {
+        type:"Leczenie kanałowe",
+        price:"500",
+        name:"Usunięcie złamanego narzędzia"
+    },
+     {
+        type:"Leczenie kanałowe",
+        price:"800+",
+        name:"Leczenie kanałowe"
+    },
+
+
+   
+     {
+        type:"Implantologia",
+        price:"2500",
+        name:"Wszczepienie implantu"
+    },
+    {
+        type:"Implantologia",
+        price:"w cenie implanta",
+        name:"Odsłonięcie implantu"
+    },
+    {
+        type:"Implantologia",
+        price:"4000",
+        name:"Wszczepienie implantu + korona ceramiczna na podbudowie cyrkonowejz łącznikiem"
+    },
+     {
+        type:"Implantologia",
+        price: "3500",
+        name:"Wszczepienie implantu + korona ceramiczna na podbudowie metalowej złącznikiem"
+    },
+    {
+        type:"Implantologia",
+        price: "1700",
+        name:"Korona cyrkonowa na implancie + łącznikm"
+    },
+    {
+        type:"Implantologia",
+        price: "500",
+        name:"Korona tymczasowa na implancie + łącznik"
+    },
+    {
+        type:"Implantologia",
+        price: "1300",
+        name:"Korona metalowa na implancie + łącznik"
+    },
+]

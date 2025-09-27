@@ -12,7 +12,9 @@ export default function Modal({children,open,onClick}:{children?:ReactNode,open:
 
     return createPortal(
         <dialog ref={modal} className={classes.dialog}>{children}
-        <button onClick={onClick}>Close</button>
+        <div className={classes.buttonDiv}>
+            <button className={classes.button} onClick={onClick}>X</button>
+        </div>
         </dialog>,
         document.getElementById("rootModal")!
     )

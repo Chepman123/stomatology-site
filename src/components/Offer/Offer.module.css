@@ -25,7 +25,8 @@
     font-size: 150%;
     padding-bottom: 20px;
 }
-.article button{
+.Link{
+    text-decoration: none;
     background-color: white;
     color: rgb(0, 0, 0);
     border: none;
@@ -35,12 +36,12 @@
     padding: 10px 20px 10px 20px;
     margin: 5px;
 }
-.article button:hover{
+.Link:hover{
     cursor: pointer;
     transform: translateY(-2.5px);
     box-shadow: 0px 5px 15px -1px #000000;
 }
-.article button:active{
+.Link:active{
     background-color: rgb(202, 202, 202);
     transform: translateY(0);
     box-shadow: none;

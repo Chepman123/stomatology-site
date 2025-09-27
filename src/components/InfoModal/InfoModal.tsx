@@ -2,7 +2,7 @@ import { useState} from "react";
 import Modal from "./Modal";
 import classes from './InfoModal.module.css'
 
-export default function InfoModal(){
+export default function InfoModal({children}:{children:any}){
     const [modal,setModal] = useState<boolean>(false);
     function showModal():void{
          setModal(!modal);
@@ -10,10 +10,15 @@ export default function InfoModal(){
    
     return(
         <div>
-        <button onClick={showModal}>Click</button>
+        <button onClick={showModal}>{children}</button>
         <Modal open={modal} onClick={()=>setModal(false)}>
-            <h3>Lara top</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur magni, numquam dicta saepe modi magnam aspernatur nostrum, ab explicabo delectus nesciunt perferendis. Quos veniam ab veritatis, nam fugiat iure quod.</p>
+            <h1 className={classes.h1}>Serdecznie zapraszamy do naszej stomatologii</h1>
+            <h3>Adres: Gdynia, Legionów 107N/3</h3>
+            <h3>Zadzwoń do nas: 606 - 591 - 391</h3>
+            <h3>Email Address: Dantwaystomatologia@gmail.com</h3>
+            <div className={classes.div}><img className={classes.img} src="/adres.jpg"/></div>
+            <h4 className={classes.h4}>Ważne</h4>
+            <p>Umawianie wizyt telefonicznie, od poniedziałku do piątku w godzinach 9-18 pod podanym numerem telefonu. W razie braku możliwości odebrania telefonu oddzwaniamy osobiście pod wyświetlony numer telefonu</p>
         </Modal>
         </div>
     )
