@@ -124,4 +124,7 @@ nav button:active{
         text-decoration: underline;
         font-size: 400%;
     }
+    .hideMob,.banner{
+        display: none;
+    }
 }

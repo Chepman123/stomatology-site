@@ -13,7 +13,7 @@ export default function Nav(){
             <h1>jest naszym <strong className={classes.strong}>priorytetem</strong></h1>
         </div>
         <span className={classes.banner}>
-        <h2>Stomatologia</h2>
+        <h2 className={classes.hideMob}>Stomatologia</h2>
         <div className={classes.borderDiv}/>
         <h1>DANTWAY</h1>
         </span>
