@@ -5,6 +5,7 @@ import Service from "./Service/Service";
 import classes from './Services.module.css'
 import type { serviceExample } from '/Dantway/stomatology-site/src/data/services';
 import { servicesData } from "../../../data/services";
+import { Link } from "react-router-dom";
 
 
 const serviceTypes: { label: string; type: serviceExample["type"] }[] = [
@@ -25,6 +26,7 @@ export default function Services() {
     <main className={classes.main}>
       <Header />
       <div className={classes.div} ref={parentServ}>
+        <Link to="/"><h2 className={classes.mobileBack}>główna strona</h2></Link>
         <h1 className={classes.h1}>Cennik Usług Stomatologicznych</h1>
 
         {serviceTypes.map(({ label, type }) => (

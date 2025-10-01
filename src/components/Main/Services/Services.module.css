@@ -50,11 +50,19 @@
 .servicesList{
     width: 80%;
 }
+.mobileBack{
+    display: none;
+}
 @media(max-width:768px){
     .div{
         width: 100%;
     }
     .h1{
         text-align: center;
+    }
+    .mobileBack{
+        color: black;
+        text-transform: uppercase;
+        display: block;
     }
 }
