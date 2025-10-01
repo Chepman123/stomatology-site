@@ -56,3 +56,14 @@
     display: flex;
     justify-content: center;
 }
+@media(max-width:768px){
+.dialog{
+    width: 100%;
+}
+.div{
+    height: 150px;
+}
+.img{
+    width: 40%;
+}
+}

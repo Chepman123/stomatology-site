@@ -50,3 +50,11 @@
 .servicesList{
     width: 80%;
 }
+@media(max-width:768px){
+    .div{
+        width: 100%;
+    }
+    .h1{
+        text-align: center;
+    }
+}

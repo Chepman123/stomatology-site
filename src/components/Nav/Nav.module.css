@@ -98,3 +98,30 @@ nav button:active{
     transform: translateY(0);
     box-shadow: none;
 }
+.mobileSlogan{
+    display: none;
+}
+@media(max-width:768px){
+    nav{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    nav h1{
+        display: none;
+    }
+    .slogan{
+        font-size: 110%;
+    }
+    .slogan h1{
+        display: block;
+        text-align: center;
+    }
+    .mobileSlogan{
+        margin-top: -50%;
+        margin-bottom: 50%;
+        display: block;
+        text-decoration: underline;
+        font-size: 400%;
+    }
+}

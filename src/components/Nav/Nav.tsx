@@ -7,6 +7,7 @@ export default function Nav(){
     return (
     <nav>
         <div className={classes.div}>
+            <h1 className={classes.mobileSlogan}>DANTWAY</h1>
         <div className={classes.slogan}>
             <h1>Twój uśmiech</h1>
             <h1>jest naszym <strong className={classes.strong}>priorytetem</strong></h1>
