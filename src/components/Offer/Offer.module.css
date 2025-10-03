@@ -63,6 +63,7 @@
     .div{
         flex-direction: column;
        width: 100%;
+       border: none;
     }
     .img{
        border-radius: 0;

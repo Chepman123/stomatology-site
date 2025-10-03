@@ -85,4 +85,7 @@
         border-radius: 0%;
         width: 100%;
     }
+    .left{
+         border-bottom: none;
+    }
 }
