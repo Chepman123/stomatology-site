@@ -24,6 +24,11 @@ export const servicesData: serviceExample[]=[
         name:"Skaling + piaskowanie"
     },
     {
+        type:"Profilaktyka",
+        price:400,
+        name:"fluoryzacja"
+    },
+    {
         type:"Stomatologia dziecięca",
         price:100,
         name:"Lakowanie bruzd"
@@ -35,7 +40,7 @@ export const servicesData: serviceExample[]=[
     },
     {
         type:"Stomatologia dziecięca",
-        price:300,
+        price:200,
         name:"Usunięcie zęba"
     },
     {
@@ -45,7 +50,7 @@ export const servicesData: serviceExample[]=[
     },
     {
         type:"Stomatologia zachowawcza",
-        price:"300+",
+        price:"250+",
         name:"Wypełnienie"
     }
     ,
@@ -68,17 +73,17 @@ export const servicesData: serviceExample[]=[
 
     {
         type:"Chirurgia",
-        price:"400",
+        price:"400+",
         name:"Ekstrakcja zęba"
     },
      {
         type:"Chirurgia",
-        price:"800",
+        price:"800+",
         name:"Usunięcie zęba „mądrości” górnego"
     },
      {
         type:"Chirurgia",
-        price:"800",
+        price:"800+",
         name:"Usunięcie zęba „mądrości” dolnego"
     },
      {
@@ -129,13 +134,13 @@ export const servicesData: serviceExample[]=[
     },
     {
         type:"Protetyka",
-        price:"1700",
+        price:"2000",
         name:"Korona ceramiczna na podbudowie cyrkonowej"
     },
     {
         type:"Protetyka",
         price:"1000",
-        name:"Korona pełnometalowa CoCr"
+        name:"Korona pełnometalowa"
     },
     {
         type:"Protetyka",
@@ -144,7 +149,7 @@ export const servicesData: serviceExample[]=[
     },
     {
         type:"Protetyka",
-        price:"1900",
+        price:"1000",
         name:"Szyna relaksacyjna"
     },
     {
@@ -195,7 +200,7 @@ export const servicesData: serviceExample[]=[
 
     {
         type:"Leczenie kanałowe",
-        price:"350",
+        price:"1000+",
         name:"Reendo (ponowne leczenie kanałowe"
     },
     {
@@ -213,37 +218,37 @@ export const servicesData: serviceExample[]=[
    
      {
         type:"Implantologia",
-        price:"2500",
+        price:"3000",
         name:"Wszczepienie implantu"
     },
     {
         type:"Implantologia",
-        price:"w cenie implanta",
+        price:"w cenie implanta ",
         name:"Odsłonięcie implantu"
     },
     {
         type:"Implantologia",
-        price:"4000",
+        price:"5500",
         name:"Wszczepienie implantu + korona ceramiczna na podbudowie cyrkonowejz łącznikiem"
     },
      {
         type:"Implantologia",
-        price: "3500",
+        price: "4500",
         name:"Wszczepienie implantu + korona ceramiczna na podbudowie metalowej złącznikiem"
     },
     {
         type:"Implantologia",
-        price: "1700",
-        name:"Korona cyrkonowa na implancie + łącznikm"
+        price: "łącznik + 2000",
+        name:"Korona cyrkonowa na implancie"
     },
     {
         type:"Implantologia",
-        price: "500",
-        name:"Korona tymczasowa na implancie + łącznik"
+        price: "łącznik + 500",
+        name:"Korona tymczasowa na implancie"
     },
     {
         type:"Implantologia",
-        price: "1300",
-        name:"Korona metalowa na implancie + łącznik"
+        price: "łącznik + 1300",
+        name:"Korona metalowa na implancie"
     },
 ]
