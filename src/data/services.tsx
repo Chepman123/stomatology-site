@@ -197,7 +197,11 @@ export const servicesData: serviceExample[]=[
         price:"1000",
         name:"Most adhezyjny kompozytowy"
     },
-
+    {
+        type:"Protetyka",
+        price:-1,
+        name:"Wykonanie pracy protetycznej w trybie ekspresowym dopłata 30%"
+    },
     {
         type:"Leczenie kanałowe",
         price:"1000+",
@@ -208,12 +212,35 @@ export const servicesData: serviceExample[]=[
         price:"500",
         name:"Usunięcie złamanego narzędzia"
     },
+
+
      {
         type:"Leczenie kanałowe",
-        price:"800+",
-        name:"Leczenie kanałowe"
+        price:"800",
+        name:"Leczenie kanałowe(x1)"
+    },
+    {
+        type:"Leczenie kanałowe",
+        price:"1000",
+        name:"Leczenie kanałowe(x2)"
+    },
+    {
+        type:"Leczenie kanałowe",
+        price:"1200",
+        name:"Leczenie kanałowe(x3)"
+    },
+    {
+        type:"Leczenie kanałowe",
+        price:"1600",
+        name:"Leczenie kanałowe(x4)"
     },
 
+
+    {
+        type:"Leczenie kanałowe",
+        price:-1,
+        name:"UWAGA! Po leczeniu kanałowym odbudowa/wypełnienie zęba jest odzielnym, płatnym zabiegiem"
+    },
 
    
      {

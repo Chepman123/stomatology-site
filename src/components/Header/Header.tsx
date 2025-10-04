@@ -8,8 +8,8 @@ export default function Header(){
             <Link to="/"><h2>DANTWAY stomatologia</h2></Link>
             <ul>
                 <li><Link to="/services">Usługi i Cennik</Link></li>
-                <li><a href="#About">O nas</a></li>
-                <li><a href="#Contact">Kontakt</a></li>
+                <li><Link to="/#About">O nas</Link></li>
+                <li><Link to="/#Contact">Kontakt</Link></li>
             </ul>
         </header>
     )
