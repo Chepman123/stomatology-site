@@ -28,13 +28,16 @@ main{
     width: 100%;
   }
   html,body{
-  
   scroll-behavior: smooth;
   }
 }
 html{
   overflow-x: hidden;
   scroll-behavior: smooth;
+}
+body{
+  overflow-x: hidden; 
+  overflow-y: auto;
 }
 
 @media(min-width:768px){
