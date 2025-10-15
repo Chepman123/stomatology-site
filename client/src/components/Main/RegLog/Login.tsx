@@ -26,7 +26,7 @@ export default function Login(){
         return;
        }
         setCookie('user',login);
-        navigator('/books');
+        navigator('/book');
     }
 
     return<form className={classes.form}>
