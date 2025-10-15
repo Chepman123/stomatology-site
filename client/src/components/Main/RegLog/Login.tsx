@@ -21,7 +21,7 @@ export default function Login(){
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({login:login,password:password})
       })
-       if(await response.json()){ 
+       if(!await response.json()){ 
         setStatus(true);
         return;
        }
