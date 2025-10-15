@@ -2,19 +2,21 @@ import bcrypt from 'bcrypt';
 import db from '../db';
 
 export default class LoginService {
-  Login(login: string, password: string): Promise<boolean> {
-    return new Promise<boolean>((resolve, reject) => {
-      const sql = `SELECT password FROM users WHERE login = ?`;
-      db.query(sql, [login], (err, results: any[]) => {
+  async Login(login: string, password: string): Promise<boolean> {
+    const client = await db.connect();
+    try {
+      const sql = `SELECT password FROM users WHERE login = $1`;
+      const res = await client.query(sql, [login]);
 
-        if (results.length === 0) return resolve(false);
+      if (res.rowCount === 0) return false;
 
-        const hash = results[0].password as string;
-        bcrypt.compare(password, hash, (cmpErr, isMatch) => {
-          if (cmpErr) return reject(cmpErr);
-          return resolve(Boolean(isMatch));
-        });
-      });
-    });
+      const hash = res.rows[0].password as string;
+      return await bcrypt.compare(password, hash);
+    } catch (err) {
+      console.error(err);
+      return false;
+    } finally {
+      client.release();
+    }
   }
 }

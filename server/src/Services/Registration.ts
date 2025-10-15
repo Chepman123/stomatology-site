@@ -1,13 +1,19 @@
 import bcrypt from 'bcrypt';
-import db from '../db'
-export default class RegService{
-   Reg(login:string,password:string,phone:string):Promise<boolean>{
-      return new Promise<boolean>(async(resolve,reject)=>{
-       const hashedPassword = await bcrypt.hash(password,10);
-       const sql:string = `INSERT INTO users(login, password, phone) VALUES (?,?,?)`;
-       db.query(sql,[login,hashedPassword,phone]);
+import db from '../db';
 
-       return true;
-      });
-   }
+export default class RegService {
+  async Reg(login: string, password: string, phone: string): Promise<boolean> {
+    const client = await db.connect();
+    try {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const sql = `INSERT INTO users(login, password, phone) VALUES ($1, $2, $3)`;
+      await client.query(sql, [login, hashedPassword, phone]);
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    } finally {
+      client.release(); 
+    }
+  }
 }
