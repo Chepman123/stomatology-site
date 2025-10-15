@@ -19,7 +19,7 @@ export default function Registration() {
       return;
     }
 
-   const response = await fetch('http://localhost:5000/registration',{
+   const response = await fetch('https://stomatology-site-4.onrender.com/registration',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({login:login,password:password,phone:phone})
