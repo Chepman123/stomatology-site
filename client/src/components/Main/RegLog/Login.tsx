@@ -16,7 +16,7 @@ export default function Login(){
     }
 
     async function Login(){
-      const response = await fetch('https://stomatology-site-4.onrender.com/login',{
+      const response = await fetch('https://stomatology-site-5.onrender.com/login',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({login:login,password:password})
