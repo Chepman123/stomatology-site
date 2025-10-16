@@ -16,8 +16,6 @@ export default class BookServ {
         [userId, date, hour, service]
       );
 
-      console.log("Бронювання успішно додано");
-
       const transporter = nodemailer.createTransport({
         host: "Vladshlapak333@gmail.com", 
         port: 465,
