@@ -21,7 +21,7 @@ export default function Login(){
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({login:login,password:password})
       })
-      const result:boolean = await response.json();
+      const result:boolean = (await response.json()).result;
       console.log(result);
      if(!result){ 
         setStatus(true);

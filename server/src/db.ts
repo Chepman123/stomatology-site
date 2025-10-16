@@ -4,7 +4,6 @@ import path from 'path';
 
 
 dotenv.config({ path: path.resolve(__dirname, "../src/.env") });
-console.log(process.env.PASSWORD);
 const pool = new Pool({
   host: process.env.HOST,
   user: process.env.USER,

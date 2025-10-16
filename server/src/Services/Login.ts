@@ -7,7 +7,6 @@ export default class LoginService {
     try {
       const sql = `SELECT password FROM users WHERE login = $1`;
       const res = await client.query(sql, [login]);
-
       if (res.rowCount === 0) return false;
 
       const hash = res.rows[0].password as string;

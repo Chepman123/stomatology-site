@@ -24,7 +24,7 @@ export default function Registration() {
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({login:login,password:password,phone:phone})
    })
-   const result:boolean = await response.json();
+   const result:boolean = (await response.json()).result;
    setStatus(result);
    if(result){
      setCookie('user',login);

@@ -5,18 +5,27 @@ import helmet from "helmet";
 
 const app = express();
 
+app.use(helmet());
+app.use(express.json());
+
+const allowedOrigins = ['https://dantway.pl', 'http://localhost:5173'];
+
 app.use(cors({
-  origin: 'https://dantway.pl',
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET','POST','OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials: true
 }));
 
-app.use(helmet());
-app.use(express.json());
 
 app.options('*', cors({
-  origin: 'https://dantway.pl',
+  origin: allowedOrigins,
   methods: ['GET','POST','OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials: true
@@ -24,5 +33,5 @@ app.options('*', cors({
 
 app.use('/', Routes());
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
