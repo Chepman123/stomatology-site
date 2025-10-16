@@ -21,10 +21,15 @@ export default function Login(){
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({login:login,password:password})
       })
-       if(!await response.json()){ 
+      const result:boolean = await response.json();
+      console.log(result);
+     if(!result){ 
         setStatus(true);
         return;
        }
+    
+      
+      
         setCookie('user',login);
         navigator('/book');
     }
