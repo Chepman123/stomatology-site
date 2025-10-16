@@ -5,7 +5,7 @@ class BookController {
         this.serv = serv;
     }
     Book(req, res) {
-        this.serv.Book(req.body.login, req.body.data, req.body.hour, req.body.service, req.body.login);
+        this.serv.Book(req.body.data, req.body.hour, req.body.service, req.body.login);
         res.status(200).json({ message: 'Booking created' });
     }
 }
