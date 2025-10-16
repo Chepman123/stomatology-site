@@ -89,7 +89,7 @@ export default function BookPage(){
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
                         data:selected?.date,
-                        time:selected?.hour,
+                        hour:selected?.hour,
                         service:selectedService,
                         login:getCookie('user')
                     })
