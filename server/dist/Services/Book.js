@@ -15,11 +15,13 @@ class BookServ {
             const userId = userRes.rows[0].id;
             await client.query(`INSERT INTO bookings(patient_id, date, time, service, notes) VALUES ($1, $2, $3, $4, '')`, [userId, date, hour, service]);
             const transporter = nodemailer_1.default.createTransport({
-                service: "gmail",
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true,
                 auth: {
-                    user: "vladshlapak444@gmail.com",
-                    pass: "07vSh03333",
-                },
+                    user: "Vladshlapak333@gmail.com",
+                    pass: "07vSh03333"
+                }
             });
             const mailOptions = {
                 from: '"Dantway" <твій_логін@gmail.com>',

@@ -17,12 +17,14 @@ export default class BookServ {
       );
 
       const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "vladshlapak444@gmail.com",      
-          pass: "07vSh03333",             
-        },
-      });
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+        user: "Vladshlapak333@gmail.com",
+        pass: "07vSh03333"
+    }
+});
 
       const mailOptions = {
         from: '"Dantway" <твій_логін@gmail.com>',
