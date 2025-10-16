@@ -5,7 +5,7 @@ class RegController {
         this.serv = serv;
     }
     Reg(req, res) {
-        res.json(this.serv.Reg(req.body.login, req.body.password, req.body.phone));
+        res.json({ result: this.serv.Reg(req.body.login, req.body.password, req.body.phone) });
     }
 }
 exports.default = RegController;

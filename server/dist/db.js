@@ -5,12 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = require("pg");
 const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
+const path_1 = __importDefault(require("path"));
+dotenv_1.default.config({ path: path_1.default.resolve(__dirname, "../src/.env") });
 const pool = new pg_1.Pool({
-    host: process.env.HOST || 'localhost',
-    user: process.env.USER || 'postgres',
-    password: process.env.PASSWORD || '',
-    database: process.env.DATABASE || 'dantway',
-    port: Number(process.env.PORT) || 5432,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    port: Number(process.env.DB_PORT),
+    ssl: true
 });
 exports.default = pool;

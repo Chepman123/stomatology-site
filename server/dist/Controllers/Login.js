@@ -4,8 +4,10 @@ class LoginController {
     constructor(serv) {
         this.serv = serv;
     }
-    Login(req, res) {
-        res.json(this.serv.Login(req.body.login, req.body.password));
+    async Login(req, res) {
+        const result = await this.serv.Login(req.body.login, req.body.password);
+        console.log(result);
+        res.json({ result: result });
     }
 }
 exports.default = LoginController;
