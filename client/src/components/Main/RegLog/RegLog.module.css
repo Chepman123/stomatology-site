@@ -11,6 +11,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    text-align: center;
 }
 input{
     width: 40%;
@@ -47,4 +48,9 @@ input{
 }
 .h2{
     color: red;
+}
+@media(max-width:765px){
+    .form{
+        width: 90%;
+    }
 }

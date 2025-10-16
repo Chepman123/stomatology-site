@@ -1,12 +1,21 @@
-type servives = "Profilaktyka" |
+export type serviсes = "Profilaktyka" |
  "Stomatologia dziecięca"|"Stomatologia zachowawcza"|"Wybielanie"|"Chirurgia"|"Protetyka"|"Leczenie kanałowe"|"Implantologia";
 
 export interface serviceExample{
-    type:servives,
+    type:serviсes,
     price:number|string,
     name:string
  }
-
+export const servicesList:string[] = [
+  "Profilaktyka",
+  "Stomatologia dziecięca",
+  "Stomatologia zachowawcza",
+  "Wybielanie",
+  "Chirurgia",
+  "Protetyka",
+  "Leczenie kanałowe",
+  "Implantologia"
+];
 export const servicesData: serviceExample[]=[
     {
         type:"Profilaktyka",
