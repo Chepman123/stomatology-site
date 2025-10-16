@@ -8,6 +8,7 @@
     "dev": "ts-node-dev src/index.ts"
   },
   "dependencies": {
+    "@sendgrid/mail": "^8.1.6",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
