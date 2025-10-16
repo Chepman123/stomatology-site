@@ -17,17 +17,15 @@ export default class BookServ {
       );
 
       const transporter = nodemailer.createTransport({
-        host: "Vladshlapak333@gmail.com", 
-        port: 465,
-        secure: true, 
+        service: "gmail",
         auth: {
-          user: "dantwat@gmail.com",
-          pass: "your_email_password",
+          user: "vladshlapak444@gmail.com",      
+          pass: "07vSh03333",             
         },
       });
 
       const mailOptions = {
-        from: '"dantway" dantway@gmail.com>',
+        from: '"Dantway" <твій_логін@gmail.com>',
         to: 'Vladshlapak333@gmail.com',
         subject: "Підтвердження бронювання",
         text: `Ви успішно забронювали візит!\n\nДата: ${date}\nЧас: ${hour}\nПослуга: ${service}`,
@@ -38,13 +36,13 @@ export default class BookServ {
       };
 
       await transporter.sendMail(mailOptions);
-      console.log("Email успішно надіслано");
+      console.log("Email успішно надіслано на Vladshlapak333@gmail.com");
 
     } catch (err) {
       console.error("Помилка бронювання або email:", err);
       throw err;
     } finally {
-      client.release(); 
+      client.release();
     }
   }
 }
