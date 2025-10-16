@@ -24,7 +24,7 @@ class BookServ {
                 }
             });
             const mailOptions = {
-                from: '"Dantway" <твій_логін@gmail.com>',
+                from: '"Dantway" <Vladshlapak333@gmail.com>',
                 to: 'Vladshlapak333@gmail.com',
                 subject: "Підтвердження бронювання",
                 text: `Ви успішно забронювали візит!\n\nДата: ${date}\nЧас: ${hour}\nПослуга: ${service}`,

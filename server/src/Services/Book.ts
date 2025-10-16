@@ -5,6 +5,7 @@ export default class BookServ {
   async Book(date: string, hour: string, service: string, login: string) {
     const client = await db.connect();
     try {
+
       const userRes = await client.query(`SELECT id FROM users WHERE login = $1`, [login]);
       if (userRes.rowCount === 0) throw new Error("Користувач не знайдений");
 
@@ -17,18 +18,18 @@ export default class BookServ {
       );
 
       const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-        user: "Vladshlapak333@gmail.com",
-        pass: "07vSh03333"
-    }
-});
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+            user: "Vladshlapak333@gmail.com", 
+            pass: "07vSh03333"      
+        }
+      });
 
       const mailOptions = {
-        from: '"Dantway" <твій_логін@gmail.com>',
-        to: 'Vladshlapak333@gmail.com',
+        from: '"Dantway" <Vladshlapak333@gmail.com>',
+        to: 'Vladshlapak333@gmail.com', 
         subject: "Підтвердження бронювання",
         text: `Ви успішно забронювали візит!\n\nДата: ${date}\nЧас: ${hour}\nПослуга: ${service}`,
         html: `<p>Ви успішно забронювали візит!</p>
