@@ -1,5 +1,5 @@
 import db from '../db';
-import nodemailer from 'nodemailer';
+import Twilio from 'twilio';
 
 export default class BookServ {
   async Book(date: string, hour: string, service: string, login: string) {
@@ -15,34 +15,18 @@ export default class BookServ {
         [userId, date, hour, service]
       );
 
-      const testAccount = await nodemailer.createTestAccount();
+      const twilioClient = Twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
 
-      const transporter = nodemailer.createTransport({
-        host: testAccount.smtp.host,
-        port: testAccount.smtp.port,
-        secure: testAccount.smtp.secure,
-        auth: {
-          user: testAccount.user,
-          pass: testAccount.pass,
-        },
+      const message = await twilioClient.messages.create({
+        body: `Ви успішно забронювали візит!\nДата: ${date}\nЧас: ${hour}\nПослуга: ${service}`,
+        from: process.env.TWILIO_PHONE_NUMBER, 
+        to: '+48787296201',
       });
 
-      const mailOptions = {
-        from: '"Dantway" <no-reply@example.com>',
-        to: 'Vladshlapak333@gmail.com', // 
-        subject: 'Підтвердження бронювання',
-        text: `Ви успішно забронювали візит!\nДата: ${date}\nЧас: ${hour}\nПослуга: ${service}`,
-        html: `<p>Ви успішно забронювали візит!</p>
-               <p><b>Дата:</b> ${date}</p>
-               <p><b>Час:</b> ${hour}</p>
-               <p><b>Послуга:</b> ${service}</p>`
-      };
-
-      const info = await transporter.sendMail(mailOptions);
-      console.log("Email надіслано, preview URL:", nodemailer.getTestMessageUrl(info));
+      console.log("SMS успішно надіслано, SID:", message.sid);
 
     } catch (err) {
-      console.error("Помилка бронювання або email:", err);
+      console.error("Помилка бронювання або SMS:", err);
       throw err;
     } finally {
       client.release();
