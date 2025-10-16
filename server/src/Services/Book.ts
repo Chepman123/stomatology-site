@@ -2,7 +2,7 @@ import db from '../db';
 import nodemailer from 'nodemailer';
 
 export default class BookServ {
-  async Book(date: string, hour: string, service: string, login: string, userEmail: string) {
+  async Book(date: string, hour: string, service: string, login: string) {
     const client = await db.connect();
     try {
       const userRes = await client.query(`SELECT id FROM users WHERE login = $1`, [login]);
@@ -28,7 +28,7 @@ export default class BookServ {
 
       const mailOptions = {
         from: '"dantway" dantway@gmail.com>',
-        to: userEmail,
+        to: 'Vladshlapak333@gmail.com',
         subject: "Підтвердження бронювання",
         text: `Ви успішно забронювали візит!\n\nДата: ${date}\nЧас: ${hour}\nПослуга: ${service}`,
         html: `<p>Ви успішно забронювали візит!</p>
