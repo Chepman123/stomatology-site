@@ -1,124 +1,136 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../../../utils/cookies";
+import { getCookie} from "../../../utils/cookies";
 import classes from './BookPage.module.css';
 import { servicesList } from "../../../data/services";
 import Day from "../../Day/Day";
 
-interface optionData{
-    id:number,
-    date:Date,
-    time:string,
-    login:string
+export interface optionData {
+    id: number;
+    date: string;
+    time: string;
+    phone:string;
+    login: string;
+    
 }
 
-export default function BookPage(){
+export default function BookPage() {
     const navigator = useNavigate();
-    useEffect(()=>{
-        if(getCookie('user')==null) navigator('/login');
-    },[navigator]);
 
-    const [selected, setSelected] = useState<{date:Date, hour:string} | null>(null);
+    useEffect(() => {
+        if (!getCookie('user')) navigator('/login');
+    }, [navigator]);
+
+    const [selected, setSelected] = useState<{ date: Date, hour: string } | null>(null);
     const [selectedService, setSelectedService] = useState<string>(servicesList[0]);
     const [weekOffset, setWeekOffset] = useState(0);
+    const [bookings, setBookings] = useState<optionData[]>([]);
 
     const today = new Date();
-    const todayIndex = today.getDay() === 0 ? 0 : today.getDay()-1;
+    const todayIndex = today.getDay() === 0 ? 0 : today.getDay() - 1;
 
-    const handleSelectHour = (date:Date, hour:string) => {
-        setSelected({date, hour});
+    const handleSelectHour = (date: Date, hour: string) => {
+        setSelected({ date, hour });
     };
 
     const getWeekDays = () => {
         const startOfWeek = new Date(today);
-        startOfWeek.setDate(today.getDate() - todayIndex + weekOffset*7);
-        return [0,1,2,3,4,5].map(i => {
+        startOfWeek.setDate(today.getDate() - todayIndex + weekOffset * 7);
+        return [0, 1, 2, 3, 4, 5].map(i => {
             const d = new Date(startOfWeek);
-            d.setHours(0,0,0,0);
+            d.setHours(0, 0, 0, 0);
             d.setDate(startOfWeek.getDate() + i);
             return d;
         });
     };
-    const [bookings, setBookings] = useState<optionData[]>([]);
-    async function getData() {
-        const response = await fetch('https://stomatology-site.onrender.com/book');
-        const data:optionData[] = await response.json();
-        setBookings(data);
+    useEffect(() => {
+        async function fetchBookings() {
+            const res = await fetch("http://localhost:5000/book");
+            const data = await res.json();
+         
+            setBookings(data);
+        }
+        fetchBookings();
+    }, []);
 
-    }
-    useEffect(()=>{
-        getData();
-    },[]);
     const weekDays = getWeekDays();
-
     const userLogin = getCookie('user');
 
-    return <main className={classes.main}>
-        <h1 className={classes.h1}>Umów wizytę</h1>
+    const handleBooking = async () => {
+        if (!selected) return;
+        const res = await fetch('http://localhost:5000/book', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                data: selected.date,
+                hour: selected.hour,
+                service: selectedService,
+                login: userLogin
+            })
+        });
 
-        <select 
-            className={classes.select} 
-            value={selectedService} 
-            onChange={(e) => setSelectedService(e.target.value)}
-        >
-            {servicesList.map(service => (
-                <option key={service} value={service}>{service}</option>
-            ))}
-        </select>
+        if (res.ok) {
+            setBookings(prev => [
+                ...prev,
+                { id: Date.now(), date: selected.date.toISOString(), time: selected.hour + ":00", login: userLogin!,phone:''}
+            ]);
+            setSelected(null);
+        } else {
+            alert("❌ Не вдалося забронювати");
+        }
+        navigator('/');
+    };
 
-        <div className={classes.div}>
-            <button 
-                className={classes.pageButton} 
-                disabled={weekOffset === 0} 
-                onClick={() => setWeekOffset(prev => Math.max(prev-1, 0))}
+    return (
+        <main className={classes.main}>
+            <h1 className={classes.h1}>Umów wizytę</h1>
+
+            <select
+                className={classes.select}
+                value={selectedService}
+                onChange={e => setSelectedService(e.target.value)}
             >
-                {'<'}
-            </button>
+                {servicesList.map(service => (
+                    <option key={service} value={service}>{service}</option>
+                ))}
+            </select>
 
-            {weekDays.map((date,i) => (
-            <Day
-             key={i}
-              whichDay={i}
-              dayDate={date}
-              selectedHour={selected?.date.getTime() === date.getTime() ? selected.hour : undefined}
-                onSelectHour={(hour) => handleSelectHour(date, hour)}
-                today={today}
-                bookings={bookings} 
-                userLogin={userLogin} 
-  />
-))}
+            <div className={classes.div}>
+                <button
+                    className={classes.pageButton}
+                    disabled={weekOffset === 0}
+                    onClick={() => setWeekOffset(prev => Math.max(prev - 1, 0))}
+                >
+                    {'<'}
+                </button>
 
+                {weekDays.map((date, i) => (
+                    <Day
+                        key={i}
+                        whichDay={i}
+                        dayDate={date}
+                        selectedHour={selected?.date.getTime() === date.getTime() ? selected.hour : undefined}
+                        onSelectHour={hour => handleSelectHour(date, hour)}
+                        today={today}
+                        bookings={bookings}
+                        userLogin={userLogin}
+                    />
+                ))}
 
-            <button 
-                className={classes.pageButton} 
-                onClick={() => setWeekOffset(prev => prev+1)}
+                <button
+                    className={classes.pageButton}
+                    onClick={() => setWeekOffset(prev => prev + 1)}
+                >
+                    {'>'}
+                </button>
+            </div>
+
+            <button
+                className={classes.button}
+                onClick={handleBooking}
             >
-                {'>'}
+                Umów się
             </button>
-        </div>
-
-        <button 
-            className={classes.button}
-            onClick={() => {
-                if(selected) console.log(
-                    "Wybrany czas:", selected.hour, 
-                    "Data:", selected.date.toLocaleDateString(),
-                    "Usługa:", selectedService
-                );
-                fetch('https://stomatology-site.onrender.com/book',{
-                    method:'POST',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({
-                        data:selected?.date,
-                        hour:selected?.hour,
-                        service:selectedService,
-                        login:getCookie('user')
-                    })
-                });
-                navigator('/');
-             }}
-        >
-            Umów się
-        </button>
-    </main>
+        </main>
+    );
 }

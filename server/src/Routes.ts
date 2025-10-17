@@ -20,6 +20,8 @@ export default ()=>{
    router.post('/registration',(req:Request,res:Response)=>{contr.Reg(req,res)});
    router.post('/login',(req:Request,res:Response)=>{contrLogin.Login(req,res)});
    router.post('/book',(req:Request,res:Response)=>{contrBook.Book(req,res)});
+   router.get('/book',(req:Request,res:Response)=>{contrBook.GetBooks(res)});
+   router.delete('/book',(req:Request,res:Response)=>{contrBook.DeleteBooks(req,res)});
 
    return router;
 }

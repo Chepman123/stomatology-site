@@ -21,5 +21,7 @@ exports.default = () => {
     router.post('/registration', (req, res) => { contr.Reg(req, res); });
     router.post('/login', (req, res) => { contrLogin.Login(req, res); });
     router.post('/book', (req, res) => { contrBook.Book(req, res); });
+    router.get('/book', (req, res) => { contrBook.GetBooks(res); });
+    router.delete('/book', (req, res) => { contrBook.DeleteBooks(req, res); });
     return router;
 };

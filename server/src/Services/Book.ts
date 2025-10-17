@@ -1,10 +1,16 @@
 import db from '../db';
-import Twilio from 'twilio';
+
+interface optionData{
+    id:number,
+    date:string,
+    time:string,
+    login:string
+}
 
 export default class BookServ {
   async Book(date: string, hour: string, service: string, login: string) {
     const client = await db.connect();
-    try {
+    
       const userRes = await client.query(`SELECT id FROM users WHERE login = $1`, [login]);
       if (userRes.rowCount === 0) throw new Error("Користувач не знайдений");
 
@@ -15,21 +21,24 @@ export default class BookServ {
         [userId, date, hour, service]
       );
 
-      const twilioClient = Twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
-
-      const message = await twilioClient.messages.create({
-        body: `Ви успішно забронювали візит!\nДата: ${date}\nЧас: ${hour}\nПослуга: ${service}`,
-        from: process.env.TWILIO_PHONE_NUMBER, 
-        to: '+48787296201',
-      });
-
-      console.log("SMS успішно надіслано, SID:", message.sid);
-
-    } catch (err) {
-      console.error("Помилка бронювання або SMS:", err);
-      throw err;
-    } finally {
       client.release();
-    }
+  }
+  async GetUsers():Promise<optionData[]>{
+    const client = await db.connect();
+
+    const sql:string=`SELECT b.id,b.date,b.time, u.login, u.phone FROM bookings b
+JOIN users u ON u.id=b.patient_id  `;
+     const result:optionData[] = (await client.query(sql)).rows;
+     client.release();
+     return result;
+  }
+  async DeleteUsers(id:number){
+    const client = await db.connect();
+    console.log(id)
+    const sql = `DELETE FROM bookings WHERE id = $1`;
+
+    client.query(sql,[id]);
+
+    client.release();
   }
 }

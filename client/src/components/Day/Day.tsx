@@ -1,85 +1,116 @@
-import type { optionData } from "../Main/Book/BookPage";
-import classes from './Day.module.css'; 
-import Hour from './Hour';
+// Day.tsx
+import { useEffect, useMemo} from "react";
+import Hour from "./Hour";
+import classes from "./Day.module.css";
+import {type optionData } from "../Main/Book/BookPage";
+import { getCookie } from "../../utils/cookies";
 
-export default function Day({ 
-  whichDay, 
-  selectedHour, 
-  onSelectHour,
-  today,
-  dayDate,
-  bookings,
-  userLogin
-}:{
-  whichDay:number, 
-  selectedHour?:string, 
-  onSelectHour:(hour:string)=>void,
-  today:Date,
-  dayDate:Date,
-  bookings: optionData[],
-  userLogin:string | null
+export default function Day({
+    whichDay,
+    selectedHour,
+    onSelectHour,
+    today,
+    dayDate,
+    bookings,
+    userLogin
+}: {
+    whichDay: number;
+    selectedHour?: string;
+    onSelectHour: (hour: string) => void;
+    today: Date;
+    dayDate: Date;
+    bookings: optionData[];
+    userLogin: string | null;
 }) {
-  const dayNames = ['pon','wtr','śrd','czw','pią','sob'];
-  const StartHours = [9,9,9,9,9,9.5];
-  const EndHours = [16.5,17,17,17,17,16];
+    const dayNames = ["pon", "wtr", "śrd", "czw", "pią", "sob"];
+    const StartHours = [9, 9, 9, 9, 9, 9.5];
+    const EndHours = [16.5, 17, 17, 17, 17, 16];
 
-  const hours:string[] = [];
-  for (let h = StartHours[whichDay]; h < EndHours[whichDay]; h += 0.5) {
-    const hourNum = Math.floor(h);
-    const minutes = h % 1 === 0 ? "00" : "30";
-    const hourStr = `${hourNum}:${minutes}`;
+    const hours = useMemo(() => {
+        const result: string[] = [];
+        for (let h = StartHours[whichDay]; h < EndHours[whichDay]; h += 0.5) {
+            const hourNum = Math.floor(h);
+            const minutes = h % 1 === 0 ? "00" : "30";
+            const hourStr = `${hourNum.toString().padStart(2, "0")}:${minutes}`;
+            const hourDate = new Date(dayDate);
+            hourDate.setHours(hourNum, minutes === "00" ? 0 : 30, 0, 0);
+            if (hourDate < today) continue;
+            result.push(hourStr);
+        }
+        return result;
+    }, [dayDate, today, whichDay]);
 
-    const hourDate = new Date(dayDate);
-    hourDate.setHours(hourNum, minutes==="00"?0:30,0,0);
+    useEffect(() => {
+        const filtered = bookings.filter(b => {
+            const bookingDate = new Date(b.date);
+            return bookingDate.getFullYear() === dayDate.getFullYear()
+                && bookingDate.getMonth() === dayDate.getMonth()
+                && bookingDate.getDate() === dayDate.getDate();
+        });
+        
+    }, [bookings, dayDate]);
 
-    if (hourDate < today) continue; 
-    hours.push(hourStr);
-  }
+    const findBooking = (hour: string)=>{
+      if(bookings.length==0)return;
+      hour+=':00';
+      for(let i=0;i<bookings.length;i++){
+        if(bookings[i].time==hour && dateIsSame(bookings[i].date,dayDate.toString())){
+          return true
+        }
+      }
+      return false;
+    };
+    const isUserBooked = (hour:string)=>{
+       if(bookings.length==0)return;
+      hour+=':00';
+      for(let i=0;i<bookings.length;i++){
+        
+        if(bookings[i].time==hour && bookings[i].login==getCookie('user') && dateIsSame(bookings[i].date,dayDate.toString())){
+          return true
+        }
+      }
+      return false;
+    }
+    function getId(hour:string):number{
+       if(bookings.length==0)return 0;
+      hour+=':00';
+      for(let i=0;i<bookings.length;i++){
+        
+        if(bookings[i].time==hour && dateIsSame(bookings[i].date,dayDate.toString())){
+          return i;
+        }
+      }
+      return 0;
+    }
+    const dateIsSame = (first:string,second:string)=>{
+      const bookingDate = new Date(first);
+      const paneleDate = new Date(second);
 
-  const isBooked = (hour:string) => {
-    return bookings.some(b => {
-      const bookedDate = new Date(b.date);
-      return bookedDate.toDateString() === dayDate.toDateString() && b.time === hour;
-    });
-  };
+      return bookingDate.getDate() == (paneleDate.getDate()-1);
+    }
+    return (
+        <div className={classes.div}>
+            <h3>{dayNames[whichDay]}</h3>
+            <h4 className={classes.h4}>{dayDate.getDate()} paź</h4>
 
-  const hasUserBooking = bookings.some(b => b.login === userLogin);
-
-  return (
-    <div className={classes.div}>
-      <h3>{dayNames[whichDay]}</h3>
-      <h4 className={classes.h4}>{dayDate.getDate()} paź</h4>
-
-      {hours.map(hour => {
-        const booked = isBooked(hour);
-        const userBooking = bookings.some(b => 
-          b.login === userLogin &&
-          new Date(b.date).toDateString() === dayDate.toDateString() &&
-          b.time === hour
-        );
-
-        return (
-          <Hour 
-            key={hour} 
-            hour={hour} 
-            selected={selectedHour === hour}
-            onSelect={() => {
-              if (userBooking) {
-                console.log(`Masz już rezerwację na ten czas: ${hour}`);
-                return;
-              }
-              if (hasUserBooking && !userBooking) {
-                return;
-              }
-              if (booked && !userBooking) return;
-              
-              onSelectHour(hour);
-            }}
-            disabled={booked && !userBooking} 
-            userBooking={userBooking}      
-          />
-        );
-      })}
-    </div>
-  );
+            {hours.map(hour => {
+                const bookingForThisSlot = findBooking(hour);
+                const isUserBooking = isUserBooked(hour);
+                const isBooked = findBooking(hour);
+                return (
+                    <Hour
+                        key={hour}
+                        hour={hour}
+                        selected={selectedHour === hour}
+                        disabled={isBooked}
+                        isUserBooking={isUserBooking}
+                        onSelect={() => onSelectHour(hour)}
+                        phone={bookings.length>0?bookings[getId(hour)].phone:''}
+                        login={bookings.length>0?bookings[getId(hour)].login:''}
+                        id={bookings.length>0?bookings[getId(hour)].id:0}
+                    />
+                );
+            })}
+        </div>
+    );
 }
