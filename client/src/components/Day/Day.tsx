@@ -73,14 +73,16 @@ export default function Day({
     }
     function getId(hour:string):number{
        if(bookings.length==0)return 0;
+      
       hour+=':00';
       for(let i=0;i<bookings.length;i++){
         
         if(bookings[i].time==hour && dateIsSame(bookings[i].date,dayDate.toString())){
+          console.log(`${hour}:${bookings[i].login}`);
           return i;
         }
       }
-      return 0;
+      return -1;
     }
     const dateIsSame = (first:string,second:string)=>{
       const bookingDate = new Date(first);
@@ -92,25 +94,29 @@ export default function Day({
         <div className={classes.div}>
             <h3>{dayNames[whichDay]}</h3>
             <h4 className={classes.h4}>{dayDate.getDate()} paź</h4>
-
+ 
             {hours.map(hour => {
-                const bookingForThisSlot = findBooking(hour);
-                const isUserBooking = isUserBooked(hour);
-                const isBooked = findBooking(hour);
-                return (
-                    <Hour
-                        key={hour}
-                        hour={hour}
-                        selected={selectedHour === hour}
-                        disabled={isBooked}
-                        isUserBooking={isUserBooking}
-                        onSelect={() => onSelectHour(hour)}
-                        phone={bookings.length>0?bookings[getId(hour)].phone:''}
-                        login={bookings.length>0?bookings[getId(hour)].login:''}
-                        id={bookings.length>0?bookings[getId(hour)].id:0}
-                    />
-                );
-            })}
+    const id = getId(hour); // один раз
+    const bookingExists = id !== -1 && bookings[id] !== undefined;
+
+    const isUserBooking = isUserBooked(hour);
+    const isBooked = bookingExists;
+
+    return (
+        <Hour
+            key={hour}
+            hour={hour}
+            selected={selectedHour === hour}
+            disabled={isBooked}
+            isUserBooking={isUserBooking}
+            onSelect={() => onSelectHour(hour)}
+            phone={bookingExists ? bookings[id].phone : ''}
+            login={bookingExists ? bookings[id].login : ''}
+            id={bookingExists ? bookings[id].id : -1}
+        />
+    );
+})}
+
         </div>
     );
 }

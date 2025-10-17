@@ -1,6 +1,8 @@
 
 import { useNavigate } from 'react-router-dom';
 import classes from './Hour.module.css';
+import { useEffect} from 'react';
+import { getCookie, setCookie } from '../../utils/cookies';
 
 export default function Hour({
     hour,
@@ -24,7 +26,7 @@ export default function Hour({
 {
   const navigator = useNavigate();
    function DeleteButton(){
-      fetch('http://localhost:5000/book',{
+      fetch('https://stomatology-site.onrender.com/book',{
         method:'DELETE',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({id:id})
@@ -39,15 +41,23 @@ export default function Hour({
         ${isUserBooking ? classes.userBooking : ''} 
         ${!isUserBooking && disabled ? classes.booked : ''}
     `;
-
+    useEffect(()=>{
+        setCookie('booked','1');
+    },[isUserBooking])
     return (
+        <div>
         <button
             className={buttonClass}
-            onClick={isUserBooking?DeleteButton:onSelect}
+            onClick={isUserBooking?DeleteButton:getCookie('booked')=='0'?onSelect:()=>{}}
             disabled={disabled && !isUserBooking}
         >
           <strong className={classes.strong}>X </strong>
             {hour}
         </button>
+        <div className={classes.panel}  style={{ display: getCookie('user') === 'admin' ? 'block' : 'none' }}>
+            <h4 className={classes.h4}>{login}</h4>
+            <h4 className={classes.h4}>{phone}</h4>
+        </div>
+        </div>
     );
 }

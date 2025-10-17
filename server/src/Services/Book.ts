@@ -34,7 +34,6 @@ JOIN users u ON u.id=b.patient_id  `;
   }
   async DeleteUsers(id:number){
     const client = await db.connect();
-    console.log(id)
     const sql = `DELETE FROM bookings WHERE id = $1`;
 
     client.query(sql,[id]);

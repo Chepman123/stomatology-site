@@ -35,3 +35,16 @@ transition: all ease-in-out 0.2s;
     align-items: center;
     gap: 2px;
 } 
+.panel{
+    position: absolute;
+    opacity: 0;
+    margin-top: -35px;
+    margin-left: 70px;
+    transition: all ease-in-out 0.2s;
+    background-color: #ffffff;
+    color: black;
+    pointer-events: none
+}
+.button:hover + .panel{
+   opacity: 1;
+}

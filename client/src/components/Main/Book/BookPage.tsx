@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getCookie} from "../../../utils/cookies";
+import { getCookie, setCookie} from "../../../utils/cookies";
 import classes from './BookPage.module.css';
 import { servicesList } from "../../../data/services";
 import Day from "../../Day/Day";
@@ -19,6 +19,7 @@ export default function BookPage() {
 
     useEffect(() => {
         if (!getCookie('user')) navigator('/login');
+        setCookie('booked','0');
     }, [navigator]);
 
     const [selected, setSelected] = useState<{ date: Date, hour: string } | null>(null);
