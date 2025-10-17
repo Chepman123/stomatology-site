@@ -16,7 +16,7 @@ class BookServ {
     }
     async GetUsers() {
         const client = await db_1.default.connect();
-        const sql = `SELECT b.id,b.date,b.time, u.login, u.phone FROM bookings b
+        const sql = `SELECT b.id,b.date,b.time,b.service, u.login, u.phone FROM bookings b
 JOIN users u ON u.id=b.patient_id  `;
         const result = (await client.query(sql)).rows;
         client.release();
