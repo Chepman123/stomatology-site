@@ -106,6 +106,7 @@ export default function Day({
         <Hour
             key={hour}
             hour={hour}
+            service={bookingExists ? bookings[id].service : ''}
             selected={selectedHour === hour}
             disabled={isBooked}
             isUserBooking={isUserBooking}

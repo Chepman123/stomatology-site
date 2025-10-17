@@ -26,7 +26,7 @@ export default class BookServ {
   async GetUsers():Promise<optionData[]>{
     const client = await db.connect();
 
-    const sql:string=`SELECT b.id,b.date,b.time, u.login, u.phone FROM bookings b
+    const sql:string=`SELECT b.id,b.date,b.time,b.service, u.login, u.phone FROM bookings b
 JOIN users u ON u.id=b.patient_id  `;
      const result:optionData[] = (await client.query(sql)).rows;
      client.release();

@@ -11,7 +11,7 @@ export interface optionData {
     time: string;
     phone:string;
     login: string;
-    
+    service:string;
 }
 
 export default function BookPage() {
@@ -73,7 +73,7 @@ export default function BookPage() {
         if (res.ok) {
             setBookings(prev => [
                 ...prev,
-                { id: Date.now(), date: selected.date.toISOString(), time: selected.hour + ":00", login: userLogin!,phone:''}
+                { id: Date.now(), date: selected.date.toISOString(), time: selected.hour + ":00", login: userLogin!,phone:'',service:''}
             ]);
             setSelected(null);
         } else {

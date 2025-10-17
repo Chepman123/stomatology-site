@@ -7,6 +7,7 @@ import { getCookie, setCookie } from '../../utils/cookies';
 export default function Hour({
     hour,
     selected,
+    service,
     onSelect,
     disabled,
     isUserBooking,
@@ -16,6 +17,7 @@ export default function Hour({
 }: {
     hour: string;
     selected?: boolean;
+    service:string
     onSelect?: () => void;
     disabled?: boolean;
     isUserBooking?: boolean;
@@ -57,6 +59,8 @@ export default function Hour({
         <div className={classes.panel}  style={{ display: getCookie('user') === 'admin' ? 'block' : 'none' }}>
             <h4 className={classes.h4}>{login}</h4>
             <h4 className={classes.h4}>{phone}</h4>
+            <h4 className={classes.h4}>{phone}</h4>
+            <h4 className={classes.h4}>{service}</h4>
         </div>
         </div>
     );
