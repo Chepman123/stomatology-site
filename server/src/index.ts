@@ -4,7 +4,6 @@ import Routes from './Routes';
 import helmet from "helmet";
 
 const app = express();
-
 app.use(helmet());
 app.use(express.json());
 
@@ -15,21 +14,16 @@ app.use(cors({
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log('Blocked by CORS:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
   methods: ['GET','POST','OPTIONS','DELETE'],
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
-
-app.options('*', cors({
-  origin: allowedOrigins,
-  methods: ['GET','POST','OPTIONS','DELETE'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true
-}));
+app.options('*', cors());
 
 app.use('/', Routes());
 
