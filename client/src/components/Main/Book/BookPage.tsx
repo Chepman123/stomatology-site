@@ -73,7 +73,7 @@ export default function BookPage() {
         if (res.ok) {
             setBookings(prev => [
                 ...prev,
-                { id: Date.now(), date: selected.date.toISOString(), time: selected.hour + ":00", login: userLogin!,phone:'',service:''}
+                { id: Date.now(), date: selected.date.toISOString(), time: selected.hour + ":00", login: userLogin!,phone:'',service:selectedService}
             ]);
             setSelected(null);
         } else {
