@@ -5,6 +5,13 @@ import classes from './BookPage.module.css';
 import { servicesList } from "../../../data/services";
 import Day from "../../Day/Day";
 
+interface optionData{
+    id:number,
+    date:Date,
+    time:string,
+    login:string
+}
+
 export default function BookPage(){
     const navigator = useNavigate();
     useEffect(()=>{
@@ -32,8 +39,19 @@ export default function BookPage(){
             return d;
         });
     };
+    const [bookings, setBookings] = useState<optionData[]>([]);
+    async function getData() {
+        const response = await fetch('https://stomatology-site.onrender.com/book');
+        const data:optionData[] = await response.json();
+        setBookings(data);
 
+    }
+    useEffect(()=>{
+        getData();
+    },[]);
     const weekDays = getWeekDays();
+
+    const userLogin = getCookie('user');
 
     return <main className={classes.main}>
         <h1 className={classes.h1}>Umów wizytę</h1>
@@ -58,15 +76,18 @@ export default function BookPage(){
             </button>
 
             {weekDays.map((date,i) => (
-                <Day
-                    key={i}
-                    whichDay={i}
-                    dayDate={date}
-                    selectedHour={selected?.date.getTime() === date.getTime() ? selected.hour : undefined}
-                    onSelectHour={(hour) => handleSelectHour(date, hour)}
-                    today={today}
-                />
-            ))}
+            <Day
+             key={i}
+              whichDay={i}
+              dayDate={date}
+              selectedHour={selected?.date.getTime() === date.getTime() ? selected.hour : undefined}
+                onSelectHour={(hour) => handleSelectHour(date, hour)}
+                today={today}
+                bookings={bookings} 
+                userLogin={userLogin} 
+  />
+))}
+
 
             <button 
                 className={classes.pageButton} 

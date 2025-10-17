@@ -17,3 +17,9 @@ transition: all ease-in-out 0.2s;
     background-color: white;
     color: black;
 }
+.disabled{
+    color: gray;
+    text-decoration: line-through;
+}
+
+.userBooking { background-color: #2196f3; color: white; } 
