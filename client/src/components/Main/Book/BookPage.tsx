@@ -46,7 +46,7 @@ export default function BookPage() {
     };
     useEffect(() => {
         async function fetchBookings() {
-            const res = await fetch("http://localhost:5000/book");
+            const res = await fetch("https://stomatology-site.onrender.com/book");
             const data = await res.json();
          
             setBookings(data);
@@ -59,7 +59,7 @@ export default function BookPage() {
 
     const handleBooking = async () => {
         if (!selected) return;
-        const res = await fetch('http://localhost:5000/book', {
+        const res = await fetch('https://stomatology-site.onrender.com/book', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
