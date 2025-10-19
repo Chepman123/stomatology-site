@@ -23,7 +23,7 @@ export default function Nav(){
             <h1>Umów się na wizytę</h1>
             <div>
             <InfoModal>Sprawdź Adres</InfoModal>
-            <Link to='book'>Umów Wizytę</Link>
+           {/*<Link to='book'>Umów Wizytę</Link>*/}
             </div>
         </aside>
     </nav>
